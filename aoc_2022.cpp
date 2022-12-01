@@ -51,27 +51,27 @@ auto print = [](int day, int iterations, const uint64_t part1, double elapsed1_m
 };
 
 template<typename F, typename I>
-std::tuple<uint64_t, double> Runner(F func, std::vector<I> input) {
+std::tuple<uint64_t, double> Runner(F func, I* input, int dataLenght) {
 	auto start = std::chrono::high_resolution_clock::now();
-	uint64_t result = func(input);
+	uint64_t result = func(input,dataLenght);
 	auto end = std::chrono::high_resolution_clock::now();
 	auto elapsed = std::chrono::duration_cast<std::chrono::nanoseconds>(end - start).count();
 	return std::make_tuple(result, elapsed);
 }
 
 template<typename INPUT, int N, typename F1, typename F2>
-double benchmark_day(std::vector<INPUT> data, F1 part1, F2 part2, int day) {
+double benchmark_day(INPUT* data,int dataLength, F1 part1, F2 part2, int day) {
 	std::vector<double>part1_times(N);
 	uint64_t r1 = UINT64_MAX, r2 = UINT64_MAX;
 	for (int i = 0; i < N; ++i) {
-		auto [result1, elapsed1] = Runner(part1, data);
+		auto [result1, elapsed1] = Runner(part1, data, dataLength);
 		part1_times[i] = elapsed1;
 		if (r1 == UINT64_MAX)r1 = result1;
 		else if (r1 != result1)throw std::runtime_error("inconsistent result at day " + day);
 	}
 	std::vector<double>part2_times(N);
 	for (int i = 0; i < N; ++i) {
-		auto [result2, elapsed2] = Runner(part2, data);
+		auto [result2, elapsed2] = Runner(part2, data, dataLength);
 		part2_times[i] = elapsed2;
 		if (r2 == UINT64_MAX)r2 = result2;
 		else if (r2 != result2)throw std::runtime_error("inconsistent result at day " + day);
@@ -85,14 +85,14 @@ double benchmark_day(std::vector<INPUT> data, F1 part1, F2 part2, int day) {
 	double max1 = *std::ranges::max_element(part1_times);
 	double max2 = *std::ranges::max_element(part2_times);
 
-	print(day,N,
+	print(day, N,
 		r1, median1, avg1, max1,
 		r2, median2, avg2, max2);
 	return median1 + median2;
 }
 
 #if NDEBUG
-constexpr int N = 25;
+constexpr int N = 100;
 #endif
 #if !NDEBUG
 constexpr int N = 1;
@@ -103,33 +103,12 @@ int main()
 	std::cout << std::fixed;
 	std::cout << std::setprecision(2);
 	double total_time{};
-	total_time += benchmark_day<int, N>(input::data_as_int("Input/day1.txt"), aoc::day1::part_1, aoc::day1::part_2, 1);
+	int dataLength = 0;
+	int* data = input::data_as_int_array("Input/day1.txt", dataLength);
+
+	total_time += benchmark_day<int, N>(data,dataLength, aoc::day1::part_1, aoc::day1::part_2, 1);
 #if NDEBUG
-	double day12{};
 	
-	total_time += benchmark_day<std::string, N>(input::data_as_string("Input/day2.txt"), aoc::day2::part_1, aoc::day2::part_2, 2);
-	total_time += benchmark_day<std::string, N>(input::data_as_string("Input/day3.txt"), aoc::day3::part_1, aoc::day3::part_2, 3);
-	total_time += benchmark_day<std::string, N>(input::data_as_string("Input/day4.txt"), aoc::day4::part_1, aoc::day4::part_2, 4);
-	total_time += benchmark_day<std::string, N>(input::data_as_string("Input/day5.txt"), aoc::day5::part_1, aoc::day5::part_2, 5);
-	total_time += benchmark_day<std::string, N>(input::data_as_string("Input/day6.txt"), aoc::day6::part_1, aoc::day6::part_2, 6);
-	total_time += benchmark_day<int, N>(input::data_as_csv_int("Input/day7.txt"), aoc::day7::part_1, aoc::day7::part_2, 7);
-	total_time += benchmark_day<std::string, N>(input::data_as_string("Input/day8.txt"), aoc::day8::part_1, aoc::day8::part_2, 8);
-	total_time += benchmark_day<std::string, N>(input::data_as_string("Input/day9.txt"), aoc::day9::part_1, aoc::day9::part_2, 9);
-	total_time += benchmark_day<std::string, N>(input::data_as_string("Input/day10.txt"), aoc::day10::part_1, aoc::day10::part_2, 10);
-	total_time += benchmark_day<std::string, N>(input::data_as_string("Input/day11.txt"), aoc::day11::part_1, aoc::day11::part_2, 11);
-	day12 += benchmark_day<std::string, N/4>(input::data_as_string("Input/day12.txt"), aoc::day12::part_1, aoc::day12::part_2, 12);
-	total_time += benchmark_day<std::string, N>(input::data_as_string("Input/day13.txt"), aoc::day13::part_1, aoc::day13::part_2, 13);
-	total_time += benchmark_day<std::string, N>(input::data_as_string("Input/day14.txt"), aoc::day14::part_1, aoc::day14::part_2, 14);
-	total_time += benchmark_day<std::string, N>(input::data_as_string("Input/day15.txt"), aoc::day15::part_1, aoc::day15::part_2, 15);
-	total_time += benchmark_day<std::string, N>(input::data_as_string("Input/day16.txt"), aoc::day16::part_1, aoc::day16::part_2, 16);
-	total_time += benchmark_day<std::string, N>(input::data_as_string("Input/day17.txt"), aoc::day17::part_1, aoc::day17::part_2, 17);
-	total_time += benchmark_day<std::string, N>(input::data_as_string("Input/day18.txt"), aoc::day18::part_1, aoc::day18::part_2, 18);
-	total_time += benchmark_day<std::string, 1>(input::data_as_string("Input/day19.txt"), aoc::day19::part_1, aoc::day19::part_2, 19);
-	total_time += benchmark_day<std::string, N>(input::data_as_string("Input/day20.txt"), aoc::day20::part_1, aoc::day20::part_2, 20);
-	total_time += benchmark_day<std::string, N>(input::data_as_string("Input/day21.txt"), aoc::day21::part_1, aoc::day21::part_2, 21);
-	total_time += benchmark_day<std::string, N>(input::data_as_string("Input/day22.txt"), aoc::day22::part_1, aoc::day22::part_2, 22);
-	total_time += benchmark_day<std::string, N>(input::data_as_string("Input/day23.txt"), aoc::day23::part_1, aoc::day23::part_2, 23);
-	total_time += benchmark_day<std::string, N>(input::data_as_string("Input/day24.txt"), aoc::day24::part_1, aoc::day24::part_2, 24);
 
 #endif
 	//total_time += benchmark_day<std::string, N>(input::data_as_string("Input/day25.txt"), aoc::day25::part_1, aoc::day25::part_2, 25);
@@ -139,7 +118,7 @@ int main()
 	SetConsoleTextAttribute(hConsole, 15);
 	std::cout<< "Excl. Day 12: " << scaledTime(total_time) << unitFromNano(total_time);
 #if NDEBUG
-	std::cout << "\tIncl. Day 12: " << scaledTime(total_time + day12) << unitFromNano(total_time + day12) << "\n\n";
+	
 #endif
 
 	return 0;

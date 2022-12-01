@@ -31,7 +31,6 @@
     <CudaCompile Include="day1.cu">
       <Filter>cuda</Filter>
     </CudaCompile>
-    <CudaCompile Include="README.md" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="aoc_2022.cpp">

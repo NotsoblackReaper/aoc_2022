@@ -66,6 +66,7 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>WIN32;WIN64;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <LanguageStandard>stdcpp20</LanguageStandard>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -81,7 +82,6 @@
   <ItemGroup>
     <CudaCompile Include="day1.cu" />
     <CudaCompile Include="kernel.cu" />
-    <CudaCompile Include="README.md" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="aoc_2022.cpp" />

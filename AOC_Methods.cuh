@@ -3,14 +3,18 @@
 
 #include <string>
 #include <vector>
+#include <thrust/host_vector.h>
+#include <thrust/device_vector.h>
+#include <thrust/extrema.h>
+#include <thrust/sort.h>
 
 namespace aoc
 {
 	
 	namespace day1
 	{
-		uint64_t part_1(std::vector<int>&);
-		uint64_t part_2(std::vector<int>&);
+		uint64_t part_1(int*,int);
+		uint64_t part_2(int*,int);
 	}
 	/*
 	namespace day2
