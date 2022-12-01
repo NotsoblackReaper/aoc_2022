@@ -1,0 +1,27 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.3.32819.101
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "aoc_2022", "aoc_2022.vcxproj", "{2F6EF3E1-4631-4C31-AC19-408506B733DB}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{5C58B5DE-9ED8-4B88-A301-BB32EDEEDE5C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x64 = Debug|x64
+		Release|x64 = Release|x64
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2F6EF3E1-4631-4C31-AC19-408506B733DB}.Debug|x64.ActiveCfg = Debug|x64
+		{2F6EF3E1-4631-4C31-AC19-408506B733DB}.Debug|x64.Build.0 = Debug|x64
+		{2F6EF3E1-4631-4C31-AC19-408506B733DB}.Release|x64.ActiveCfg = Release|x64
+		{2F6EF3E1-4631-4C31-AC19-408506B733DB}.Release|x64.Build.0 = Release|x64
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {2DD4CAE8-094C-47EA-A3C5-E5962BFF4B2A}
+	EndGlobalSection
+EndGlobal
