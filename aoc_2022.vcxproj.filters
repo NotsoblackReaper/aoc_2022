@@ -4,33 +4,23 @@
     <Filter Include="Input">
       <UniqueIdentifier>{feef196a-406e-4d99-8ac1-429464a17f39}</UniqueIdentifier>
     </Filter>
-    <Filter Include="cuda">
-      <UniqueIdentifier>{3f7dbf14-f408-43e0-b31f-86e78d4ac540}</UniqueIdentifier>
-    </Filter>
     <Filter Include="cpp">
       <UniqueIdentifier>{ebd465b1-387c-4813-8ace-200687b837ce}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="cpp\solutions">
+      <UniqueIdentifier>{7ef45f9b-6a8c-4af5-adb7-a857836e9a2f}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="Input\day1.txt">
       <Filter>Input</Filter>
     </Text>
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="AOC_Solver.h">
-      <Filter>cpp</Filter>
-    </ClInclude>
-    <ClInclude Include="AOC_Methods.cuh">
-      <Filter>cuda</Filter>
-    </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
-    <CudaCompile Include="kernel.cu">
-      <Filter>cuda</Filter>
-    </CudaCompile>
-    <CudaCompile Include="day1.cu">
-      <Filter>cuda</Filter>
-    </CudaCompile>
+    <Text Include="Input\day2.txt">
+      <Filter>Input</Filter>
+    </Text>
+    <Text Include="Input\day3.txt">
+      <Filter>Input</Filter>
+    </Text>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="aoc_2022.cpp">
@@ -39,5 +29,19 @@
     <ClCompile Include="AOC_Solver.cpp">
       <Filter>cpp</Filter>
     </ClCompile>
+    <ClCompile Include="day1.cpp">
+      <Filter>cpp\solutions</Filter>
+    </ClCompile>
+    <ClCompile Include="day2.cpp">
+      <Filter>cpp\solutions</Filter>
+    </ClCompile>
+    <ClCompile Include="day3.cpp">
+      <Filter>cpp\solutions</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="AOC_Solver.h">
+      <Filter>cpp</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
