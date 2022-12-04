@@ -80,19 +80,16 @@
     </CudaCompile>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <CudaCompile Include="day1.cu" />
     <CudaCompile Include="kernel.cu" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="aoc_2022.cpp" />
-    <ClCompile Include="AOC_Solver.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="AOC_Methods.cuh" />
-    <ClInclude Include="AOC_Solver.h" />
-  </ItemGroup>
-  <ItemGroup>
     <Text Include="Input\day1.txt" />
+    <Text Include="Input\day2.txt" />
+    <Text Include="Input\day3.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="aoc_2022_solutions.cuh" />
+    <ClInclude Include="cuda_types.cuh" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

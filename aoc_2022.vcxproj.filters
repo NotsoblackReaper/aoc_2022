@@ -15,29 +15,24 @@
     <Text Include="Input\day1.txt">
       <Filter>Input</Filter>
     </Text>
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="AOC_Solver.h">
-      <Filter>cpp</Filter>
-    </ClInclude>
-    <ClInclude Include="AOC_Methods.cuh">
-      <Filter>cuda</Filter>
-    </ClInclude>
+    <Text Include="Input\day2.txt">
+      <Filter>Input</Filter>
+    </Text>
+    <Text Include="Input\day3.txt">
+      <Filter>Input</Filter>
+    </Text>
   </ItemGroup>
   <ItemGroup>
     <CudaCompile Include="kernel.cu">
       <Filter>cuda</Filter>
     </CudaCompile>
-    <CudaCompile Include="day1.cu">
-      <Filter>cuda</Filter>
-    </CudaCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="aoc_2022.cpp">
-      <Filter>cpp</Filter>
-    </ClCompile>
-    <ClCompile Include="AOC_Solver.cpp">
-      <Filter>cpp</Filter>
-    </ClCompile>
+    <ClInclude Include="aoc_2022_solutions.cuh">
+      <Filter>cuda</Filter>
+    </ClInclude>
+    <ClInclude Include="cuda_types.cuh">
+      <Filter>cuda</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
