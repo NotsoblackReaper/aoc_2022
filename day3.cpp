@@ -2,34 +2,36 @@
 #include <numeric>
 #include <algorithm>
 #include <iostream>
+#include<execution>
 
 uint64_t aoc::day3::part_1(const std::vector < std::string >& data) {
 	uint64_t ret = 0;
-	for (int i = 0; i < data.size(); ++i) {
-		int compSize = data[i].size() / 2;
-		bool found = false;
-		for (int comp1 = 0; comp1 < compSize&&!found; ++comp1) {
+	std::vector<int> res(data.size());
 
-			int val1 = data[i].c_str()[comp1] - 96;
-			if(val1>26||val1<1)
-				val1= data[i].c_str()[comp1] - '@' +26;
+	std::for_each(std::execution::par_unseq, data.begin(), data.end(), [&res, &data](auto&& s) {
+		int compSize = s.size() / 2;
+		for (int comp1 = 0; comp1 < compSize; ++comp1) {
+
+			int val1 = s.c_str()[comp1] - 96;
+			if (val1 > 26 || val1 < 1)
+				val1 = s.c_str()[comp1] - '@' + 26;
 
 			for (int comp2 = 0; comp2 < compSize; ++comp2) {
 
-				int val2 = data[i].c_str()[comp2+compSize] - 96;
+				int val2 = s.c_str()[comp2 + compSize] - 96;
 				if (val2 > 26 || val2 < 1)
-					val2 = data[i].c_str()[comp2 + compSize] - '@' + 26;
+					val2 = s.c_str()[comp2 + compSize] - '@' + 26;
 
 				if (val1 == val2) {
-					ret += val1;
-					found = true;
-					break;
+					int idx = &s - &data[0];
+					res[idx] = val1;
+					return;
 				}
 			}
 		}
-		
-
-	}
+		});
+	
+	ret = std::reduce(res.begin(), res.end());
 	return ret;
 }
 

@@ -67,6 +67,7 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>WIN32;WIN64;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <LanguageStandard>stdcpp20</LanguageStandard>
+      <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -83,6 +84,7 @@
     <Text Include="Input\day1.txt" />
     <Text Include="Input\day2.txt" />
     <Text Include="Input\day3.txt" />
+    <Text Include="Input\day4.txt" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="aoc_2022.cpp" />
@@ -90,6 +92,7 @@
     <ClCompile Include="day1.cpp" />
     <ClCompile Include="day2.cpp" />
     <ClCompile Include="day3.cpp" />
+    <ClCompile Include="day4.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AOC_Solver.h" />

@@ -29,13 +29,13 @@ namespace aoc
 		uint64_t part_2(const std::vector<std::string>&);
 	}
 
-	/*
 	namespace day4
 	{
 		uint64_t part_1(const std::vector<std::string>&);
 		uint64_t part_2(const std::vector<std::string>&);
 	}
 
+	/*
 	namespace day5
 	{
 		uint64_t part_1(std::vector<std::string>&);
