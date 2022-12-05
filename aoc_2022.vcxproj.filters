@@ -24,6 +24,9 @@
     <Text Include="Input\day4.txt">
       <Filter>Input</Filter>
     </Text>
+    <Text Include="Input\day5.txt">
+      <Filter>Input</Filter>
+    </Text>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="aoc_2022.cpp">
@@ -42,6 +45,9 @@
       <Filter>cpp\solutions</Filter>
     </ClCompile>
     <ClCompile Include="day4.cpp">
+      <Filter>cpp\solutions</Filter>
+    </ClCompile>
+    <ClCompile Include="day5.cpp">
       <Filter>cpp\solutions</Filter>
     </ClCompile>
   </ItemGroup>
