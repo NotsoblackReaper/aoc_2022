@@ -63,9 +63,11 @@ uint64_t aoc::day5::part_1(const std::vector < std::string >& data) {
 	for (int i = 0; i < stacks; ++i) {
 		res.push_back(stacklist[i].front());
 	}
+#if !NDEBUG
 	std::cout << "Result: " << res << "\n";
+#endif
 
-	return ret;
+	return std::hash<std::string>{}(res);
 }
 
 uint64_t aoc::day5::part_2(const std::vector < std::string >& data) {
@@ -102,7 +104,9 @@ uint64_t aoc::day5::part_2(const std::vector < std::string >& data) {
 	for (int i = 0; i < stacks; ++i) {
 		res.push_back(stacklist[i].front());
 	}
+#if !NDEBUG
 	std::cout << "Result: " << res << "\n";
+#endif
 
-	return ret;
+	return std::hash<std::string>{}(res);
 }
