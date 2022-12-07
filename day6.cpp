@@ -1,7 +1,7 @@
 #include "AOC_Solver.h"
 
 uint64_t solve(const std::string& data, size_t n) {
-	for (size_t i = n; i < data.length();++i) {
+	for (size_t i = n; i < data.length(); ++i) {
 		uint32_t chars = 0;
 		bool dupe = false;
 
