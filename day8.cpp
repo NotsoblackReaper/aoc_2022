@@ -2,7 +2,7 @@
 #include <algorithm>
 #include <numeric>
 #include<iostream>
-
+#include<omp.h>
 uint64_t aoc::day8::part_1(const std::vector<std::string>& data) {
 	size_t height = data.size();
 	size_t widht = data[0].length();
@@ -11,8 +11,9 @@ uint64_t aoc::day8::part_1(const std::vector<std::string>& data) {
 
 	int* visMap = new int[height * widht];
 
-	for (size_t y = 0; y < height; ++y) {
-		for (size_t x = 0; x < widht; ++x) {
+	#pragma omp parallel for 
+	for (int i = 0; i < height*widht; ++i) {
+		size_t x = i % widht, y = i / widht;
 			if (y == 0 || y == height - 1 || x == 0 || x == height - 1) {
 
 				visMap[y*widht+x] = 1;
@@ -20,7 +21,8 @@ uint64_t aoc::day8::part_1(const std::vector<std::string>& data) {
 			}
 			size_t value = data[y][x];
 			bool Yn=true, Yp = true, Xn = true, Xp = true;
-			for (int offset = height; offset >0; --offset) {
+
+			for (int offset = height-1; offset >0; --offset) {
 				int idxAy = y - offset;
 				int idxBy = y + offset;
 				int idxAx = x - offset;
@@ -40,7 +42,6 @@ uint64_t aoc::day8::part_1(const std::vector<std::string>& data) {
 				}
 			}
 			visMap[y*widht+x] = (Yn||Yp||Xn||Xp);
-		}
 	}
 	
 	visible = std::reduce(visMap, visMap + (height * widht));
@@ -53,12 +54,12 @@ uint64_t aoc::day8::part_2(const std::vector<std::string>& data) {
 
 	size_t visible = 0; //(height * 2 + widht * 2) - 4;
 
-	int* visMap = new int[height * widht];
-	size_t max = 0;
-	for (size_t y = 0; y < height; ++y) {
-		for (size_t x = 0; x < widht; ++x) {
+	int* results=new int[height* widht];
+	#pragma omp parallel for shared(results)
+	for (int i = 0; i < height * widht; ++i) {
+		size_t x = i % widht, y = i / widht;
 			if (y == 0 || y == height - 1 || x == 0 || x == height - 1) {
-				visMap[y * widht + x] = 0;
+				results[i] = 0;
 				continue;
 			}
 
@@ -89,10 +90,7 @@ uint64_t aoc::day8::part_2(const std::vector<std::string>& data) {
 					break;
 			}
 			size_t score = vYn * vYp * vXn * vXp;
-			visMap[y * widht + x] =score;
-			if (score > max)
-				max = score;
-		}
+			results[i] =score;
 	}
-	return max;
+	return *std::max_element(results, results+(height*widht));
 }

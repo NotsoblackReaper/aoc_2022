@@ -91,7 +91,7 @@ double benchmark_day(std::vector<INPUT> data, F1 part1, F2 part2, int day) {
 }
 
 #if NDEBUG
-constexpr int N = 100;
+constexpr int N = 5000;
 #endif
 #if !NDEBUG
 constexpr int N = 1;
