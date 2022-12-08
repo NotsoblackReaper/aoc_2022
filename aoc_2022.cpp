@@ -91,7 +91,7 @@ double benchmark_day(std::vector<INPUT> data, F1 part1, F2 part2, int day) {
 }
 
 #if NDEBUG
-constexpr int N = 50;
+constexpr int N = 100;
 #endif
 #if !NDEBUG
 constexpr int N = 1;
@@ -109,6 +109,7 @@ int main()
 	total_time += benchmark_day<std::string, N>(input::data_as_string("Input/day5.txt"), aoc::day5::part_1, aoc::day5::part_2, 5);
 	total_time += benchmark_day<std::string, N>(input::data_as_string("Input/day6.txt"), aoc::day6::part_1, aoc::day6::part_2, 6);
 	total_time += benchmark_day<std::string, N>(input::data_as_string("Input/day7.txt"), aoc::day7::part_1, aoc::day7::part_2, 7);
+	total_time += benchmark_day<std::string, N>(input::data_as_string("Input/day8.txt"), aoc::day8::part_1, aoc::day8::part_2, 8);
 #if NDEBUG
 	/*
 	double day12{};

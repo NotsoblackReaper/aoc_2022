@@ -4,28 +4,27 @@
 struct file {
 	bool isDir=false;
 	size_t size=0;
-	std::string name="";
+	size_t name=0;
 
-	std::map<std::string,file>content{};
+	std::map<size_t,file>content{};
 	file* parent = nullptr;
 
 	file() {};
-	file(std::string name, size_t size, file* parent):name(name),size(size),parent(parent),isDir(false) {
+	file(size_t name, size_t size, file* parent):name(name),size(size),parent(parent),isDir(false) {
 		if (parent != nullptr) {
 			parent->content.insert({ name,*this });
 		}
 	}
 
-	file(std::string name, file* parent) :name(name), size(0), parent(parent), isDir(true) {
+	file(size_t name, file* parent) :name(name), size(0), parent(parent), isDir(true) {
 		if (parent != nullptr) {
 			parent->content.insert({ name,*this });
 		}
 	}
 
 	size_t getSize() const {
-		if (!isDir) {
+		if (size > 0)
 			return size;
-		}
 		size_t total = 0;
 		for (const auto& [key, value] : content)
 			total += value.getSize();
@@ -58,7 +57,8 @@ struct file {
 		size_t total = SIZE_MAX;
 
 		size_t tmp = getSize();
-		if (tmp >= needed)
+		if (tmp <= needed)
+			return total;
 			total = tmp;
 
 		for (const auto& [key, value] : content)
@@ -73,46 +73,44 @@ struct file {
 };
 
 file buildFileSystem(const std::vector<std::string>& data) {
-	file root{ "/",nullptr };
-
+	auto hasher = std::hash<std::string>();
+	file root{ hasher("/"),nullptr};
 	file* current = &root;
 	bool ls = false;
 	for (int i = 1; i < data.size(); ++i) {
 		if (data[i][0] == '$') {
-			if (data[i].starts_with("$ ls")) {
+			if (data[i][2]=='l') 
 				continue;
-			}
-			if (data[i].starts_with("$ cd")) {
-				std::string name = data[i].substr(5);
-				if (name == "..") {
+			if (data[i][2]=='c') {
+				if (data[i][5] == '.') {
 					current = current->parent;
 					continue;
 				}
-				if (current->content.contains(name)) {
-					current = &(current->content[name]);
-					continue;
-				}
-				if (name[0] == '/') {
+				if (data[i][5] == '/') {
 					current = &root;
 					continue;
 				}
-
-				file tmp{ name,current };
+				auto hash = hasher(data[i].substr(5));
+				if (current->content.contains(hash)) {
+					current = &(current->content[hash]);
+					continue;
+				}
+				file tmp{ hash,current };
 				current = &tmp;
 				continue;
 			}
 			break;
 		}
 
-		if (data[i].starts_with("dir")) {
-			std::string name = data[i].substr(4);
-			file tmp{ name,current };
+		if (data[i][0]=='d') {
+			auto hash = hasher(data[i].substr(4));
+			file tmp{ hash,current };
 			continue;
 		}
 		size_t space = data[i].find(' ');
-		size_t size = std::stoi(data[i].substr(0, space));
-		std::string name = data[i].substr(space + 1);
-		file f{ name,size,current };
+		size_t size = std::stoull(data[i].substr(0, space));
+		auto hash = hasher(data[i].substr(space + 1));
+		file f{ hash,size,current };
 	}
 	return root;
 }
@@ -125,10 +123,7 @@ uint64_t aoc::day7::part_1(const std::vector<std::string>& data) {
 
 uint64_t aoc::day7::part_2(const std::vector<std::string>& data) {
 	file root = buildFileSystem(data);
-	size_t totalSize = 70000000;
-	size_t neededSize = 30000000;
-	size_t availableSize = totalSize - root.getSize();
-	size_t minDelete = neededSize - availableSize;
+	size_t minDelete = 30000000 - (70000000 - root.getSize());
 
 	return root.getMinDelete(minDelete);
 }
