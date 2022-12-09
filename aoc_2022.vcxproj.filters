@@ -36,6 +36,9 @@
     <Text Include="Input\day8.txt">
       <Filter>Input</Filter>
     </Text>
+    <Text Include="Input\day9.txt">
+      <Filter>Input</Filter>
+    </Text>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="aoc_2022.cpp">
@@ -66,6 +69,9 @@
       <Filter>cpp\solutions</Filter>
     </ClCompile>
     <ClCompile Include="day8.cpp">
+      <Filter>cpp\solutions</Filter>
+    </ClCompile>
+    <ClCompile Include="day9.cpp">
       <Filter>cpp\solutions</Filter>
     </ClCompile>
   </ItemGroup>

@@ -110,12 +110,11 @@ int main()
 	total_time += benchmark_day<std::string, N>(input::data_as_string("Input/day6.txt"), aoc::day6::part_1, aoc::day6::part_2, 6);
 	total_time += benchmark_day<std::string, N>(input::data_as_string("Input/day7.txt"), aoc::day7::part_1, aoc::day7::part_2, 7);
 	total_time += benchmark_day<std::string, N>(input::data_as_string("Input/day8.txt"), aoc::day8::part_1, aoc::day8::part_2, 8);
+	total_time += benchmark_day<std::string, N>(input::data_as_string("Input/day9.txt"), aoc::day9::part_1, aoc::day9::part_2, 9);
 #if NDEBUG
 	/*
 	double day12{};
 	
-	total_time += benchmark_day<std::string, N>(input::data_as_string("Input/day8.txt"), aoc::day8::part_1, aoc::day8::part_2, 8);
-	total_time += benchmark_day<std::string, N>(input::data_as_string("Input/day9.txt"), aoc::day9::part_1, aoc::day9::part_2, 9);
 	total_time += benchmark_day<std::string, N>(input::data_as_string("Input/day10.txt"), aoc::day10::part_1, aoc::day10::part_2, 10);
 	total_time += benchmark_day<std::string, N>(input::data_as_string("Input/day11.txt"), aoc::day11::part_1, aoc::day11::part_2, 11);
 	day12 += benchmark_day<std::string, N/4>(input::data_as_string("Input/day12.txt"), aoc::day12::part_1, aoc::day12::part_2, 12);
