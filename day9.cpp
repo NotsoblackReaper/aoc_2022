@@ -5,6 +5,7 @@
 #include<omp.h>
 #include <unordered_set>
 #include <set>
+#include <charconv>
 
 struct pair_hash
 {
@@ -20,7 +21,8 @@ uint64_t aoc::day9::part_1(const std::vector<std::string>& data) {
 	int hX = 0, hY = 0, tX = 0, tY = 0;
 	for (size_t i = 0; i < data.size(); ++i) {
 		char dir = data[i][0];
-		size_t count = std::stoull(data[i].substr(2));
+		size_t count = 0;
+		std::from_chars(data[i].data() + 2, data[i].data() + data[i].length(), count);
 		int dX = 0, dY = 0;
 		switch (dir)
 		{
@@ -76,7 +78,8 @@ uint64_t aoc::day9::part_2(const std::vector<std::string>& data) {
 		}
 	for (size_t i = 0; i < data.size(); ++i) {
 		char dir = data[i][0];
-		size_t count = std::stoull(data[i].substr(2));
+		size_t count =0;
+		std::from_chars(data[i].data()+2, data[i].data() + data[i].length(), count);
 		int dX = 0, dY = 0;
 		switch (dir)
 		{

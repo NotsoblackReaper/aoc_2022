@@ -3,15 +3,16 @@
 #include <algorithm>
 #include <iostream>
 #include<execution>
+#include<charconv>
 
 struct operation {
 	int n=0, from=0, to=0;
 	operation(const std::string& s) {
 		int s1 = s.find(' ', 5);
-		n = std::stoi(s.substr(5, s1 - 5));
+		std::from_chars(s.data() + 5, s.data() + s1, n);
 		int s2 = s.find(' ', s1+6);
-		from = std::stoi(s.substr(s1+5, s2 - s1));
-		to = std::stoi(s.substr(s2 + 4));
+		std::from_chars(s.data() + (s1 + 6), s.data() + s2, from);
+		std::from_chars(s.data() + (s2 + 4), s.data() + s.length(), to);
 	}
 
 	void execute(std::vector<char>& from,std::vector<char>&to) {

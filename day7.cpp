@@ -1,6 +1,7 @@
 #include "AOC_Solver.h"
 #include<map>
 #include<iostream>
+#include <charconv>
 struct file {
 	bool isDir=false;
 	size_t size=0;
@@ -108,7 +109,8 @@ file buildFileSystem(const std::vector<std::string>& data) {
 			continue;
 		}
 		size_t space = data[i].find(' ');
-		size_t size = std::stoull(data[i].substr(0, space));
+		size_t size=0;
+		std::from_chars(data[i].data(), data[i].data() +space, size);
 		auto hash = hasher(data[i].substr(space + 1));
 		file f{ hash,size,current };
 	}
