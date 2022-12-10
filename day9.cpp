@@ -6,8 +6,16 @@
 #include <unordered_set>
 #include <set>
 
+struct pair_hash
+{
+	template <class T1, class T2>
+	std::size_t operator() (const std::pair<T1, T2>& pair) const {
+		return std::hash<T1>()(pair.first) ^ std::hash<T2>()(pair.second);
+	}
+};
+
 uint64_t aoc::day9::part_1(const std::vector<std::string>& data) {
-	std::set<std::pair<int, int>>tailPos{};
+	std::unordered_set<std::pair<int,int>,pair_hash>tailPos{};
 	tailPos.insert({0,0});
 	int hX = 0, hY = 0, tX = 0, tY = 0;
 	for (size_t i = 0; i < data.size(); ++i) {
@@ -52,7 +60,7 @@ uint64_t aoc::day9::part_1(const std::vector<std::string>& data) {
 					tY += (hY > tY ? 1 : -1);
 				}
 			}
-			tailPos.insert({tX,tY});
+			tailPos.insert({ tX,tY });
 		}
 	}
 
@@ -60,10 +68,12 @@ uint64_t aoc::day9::part_1(const std::vector<std::string>& data) {
 }
 
 uint64_t aoc::day9::part_2(const std::vector<std::string>& data) {
-	std::set<std::pair<int, int>>tailPos{};
+	std::unordered_set<std::pair<int,int>,pair_hash>tailPos{};
 	tailPos.insert({ 0,0 });
-	std::vector< std::pair<int, int>>knots(10);
-	for (int i = 0; i < 10; ++i)knots[i]={ 0,0 };
+	std::vector < std::pair<int, int>> knots(10);
+		for (int i = 0; i < 10; ++i) {
+			knots[i] ={0,0};
+		}
 	for (size_t i = 0; i < data.size(); ++i) {
 		char dir = data[i][0];
 		size_t count = std::stoull(data[i].substr(2));
@@ -85,11 +95,11 @@ uint64_t aoc::day9::part_2(const std::vector<std::string>& data) {
 		}
 
 		for (size_t j = 0; j < count; ++j) {
-			knots[0].first += dX;
+ 			knots[0].first += dX;
 			knots[0].second += dY;
 
 			for (size_t k = 1; k < 10; ++k) {
-				int hX = knots[k - 1].first, hY = knots[k - 1].second;
+				int hX = knots[k - 1].first, hY = knots[k-1].second;
 				int tX = knots[k].first, tY = knots[k].second;
 
 				if (hY == tY) {
@@ -115,7 +125,7 @@ uint64_t aoc::day9::part_2(const std::vector<std::string>& data) {
 
 				knots[k] = { tX,tY };
 			}
-			tailPos.insert({ knots.back().first,knots.back().second});
+			tailPos.insert({ knots[9],knots[9]});
 		}
 	}
 

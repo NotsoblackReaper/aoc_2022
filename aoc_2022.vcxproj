@@ -87,6 +87,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <Text Include="Input\day1.txt" />
+    <Text Include="Input\day10.txt" />
     <Text Include="Input\day2.txt" />
     <Text Include="Input\day3.txt" />
     <Text Include="Input\day4.txt" />
@@ -100,6 +101,7 @@
     <ClCompile Include="aoc_2022.cpp" />
     <ClCompile Include="AOC_Solver.cpp" />
     <ClCompile Include="day1.cpp" />
+    <ClCompile Include="day10.cpp" />
     <ClCompile Include="day2.cpp" />
     <ClCompile Include="day3.cpp" />
     <ClCompile Include="day4.cpp" />

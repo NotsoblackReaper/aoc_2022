@@ -102,6 +102,7 @@ int main()
 	std::cout << std::fixed;
 	std::cout << std::setprecision(2);
 	double total_time{};
+	/*
 	total_time += benchmark_day<int, N>(input::data_as_int("Input/day1.txt"), aoc::day1::part_1, aoc::day1::part_2, 1);
 	total_time += benchmark_day<std::string, N>(input::data_as_string("Input/day2.txt"), aoc::day2::part_1, aoc::day2::part_2, 2);
 	total_time += benchmark_day<std::string, N>(input::data_as_string("Input/day3.txt"), aoc::day3::part_1, aoc::day3::part_2, 3);
@@ -111,7 +112,8 @@ int main()
 	total_time += benchmark_day<std::string, N>(input::data_as_string("Input/day7.txt"), aoc::day7::part_1, aoc::day7::part_2, 7);
 	total_time += benchmark_day<std::string, N>(input::data_as_string("Input/day8.txt"), aoc::day8::part_1, aoc::day8::part_2, 8);
 	total_time += benchmark_day<std::string, N>(input::data_as_string("Input/day9.txt"), aoc::day9::part_1, aoc::day9::part_2, 9);
-#if NDEBUG
+*/
+	total_time += benchmark_day<std::string, N>(input::data_as_string("Input/day10.txt"), aoc::day10::part_1, aoc::day10::part_2, 10);
 	/*
 	double day12{};
 	
@@ -133,7 +135,7 @@ int main()
 	total_time += benchmark_day<std::string, N>(input::data_as_string("Input/day25.txt"), aoc::day25::part_1, aoc::day25::part_2, 25);
 	*/
 
-#endif
+
 
 	SetConsoleTextAttribute(hConsole, 2);
 	std::cout << "\t~~~~~~~~~~~~~~~~~~~~~~~~ Total ~~~~~~~~~~~~~~~~~~~~~~~\n";
